@@ -30,6 +30,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
+                    <img class="brand" src="/pics/logo.gif">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
                         <span class="sr-only">Меню</span>
                         <span class="icon-bar"></span>

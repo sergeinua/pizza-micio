@@ -27,10 +27,11 @@
         ?>
         <div class="container">
             <div class="row">
-               <h1>Корзина</h1>
+                <h1>Корзина</h1>
                 <div class="navbar navbar-inverse navbar-fixed-top">
                     <div class="container">
                         <div class="navbar-header">
+                            <a href="http://pizza-micio.kiev.ua"><img class="brand" src="/pics/logo.gif"></a>
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
                                 <span class="sr-only">Меню</span>
                                 <span class="icon-bar"></span>
@@ -40,10 +41,13 @@
                         </div>
                         <div class="collapse navbar-collapse" id="responsive-menu">
                             <ul class="nav navbar-nav">
-                                <li><a href="http://localhost">Главная</a></li>
+                                <li><a href="http://pizza-micio.kiev.ua">Главная</a></li>
                                 <li><a href="/pizza.php">Пиццы</a></li>
                                 <li><a href="/contacts.html">Контакты</a></li>
-                                <li><a href="cart.php">Корзина</a></li>
+                                <li><a href="/cart.php">Корзина</a></li>
+                                <li><a href="http://pizza-micio.kiev.ua"><img id="tel_num" src="/pics/tel_num.gif"></a></li>
+                                <li><a>бесплатная доставка по Киеву</a></li>
+                                <li><a href="https://www.facebook.com/PizzaMicioKiev"><i id="facebook" class="fa fa-facebook-square"></i></a></li>
                             </ul>
                         </div>      
                     </div>

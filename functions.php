@@ -6,8 +6,7 @@ Class Items {
         $db = new SQLite3('data.db');
         $query = $db->query('select * from items');
         $items = $query->fetchArray(SQLITE3_ASSOC);
-        var_dump($items);
-        
+        var_dump($items);        
     }
     
     
@@ -21,23 +20,31 @@ Class Items {
             $query = $db->query('select * from items where id='.$i);
             $items = $query->fetchArray(SQLITE3_ASSOC);
             if (isset($items['id'])) {
-                echo '
-                        <div class="product_item">
-                            <form action="addtocart.php" method="post" >
-                                <div class="product_pic"><img src="pics/' . $items["picture"] . '"></div>
-                                <div class="product_name">' . $items["name"] . '</div>
-                                <div class="product_descr"><a style="color: red;">состав: </a><a>' . $items["description"]
-                                . '</a></div>
-                                <div><input name="product_id" value="' . $items['name'] . '" type="hidden"></div>
-                                <div class="txt_size_l"><a>Ø30</a></div>
-                                <div class="txt_size_r"><a>Ø60</a></div>				
-                                <div class="price30"><a name="price30">' . $items["price30"] . ' грн</a></div>
-                                <div class="price60"><a name="price60">' . $items["price60"] . ' грн</a></div>
-                                <div><input name="product_size" id="product_size_30" type="submit" value="30"></div>       
-                                <div><input name="product_size" id="product_size_60" type="submit" value="60"></div>
-                                <div><input name="price30" value="' . $items["price30"] . '" type="hidden"></div>
-                                <div><input name="price60" value="' . $items["price60"] . '" type="hidden"></div>
-                            </form>
+                echo '  
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="product_item">                            
+                                <form action="addtocart.php" method="post" >
+                                    <div class="product_pic"><img src="pics/' . $items["picture"] . '"></div>
+                                    <div class="product_name">' . $items["name"] . '</div>
+                                    <div class="product_descr"><a style="color: red;">состав: </a><a>' . $items["description"]
+                                    . '</a></div>
+                                    <div><input name="product_id" value="' . $items['name'] . '" type="hidden"></div>
+                                    <table>
+                                        <tr>                                    
+                                            <td><div class="txt_size_30"><a>Ø30</a></div></td>
+                                            <td><div class="price30"><a name="price30">' . $items["price30"] . ' грн</a></div></td>
+                                            <td><div><input name="product_size" id="product_size_30" type="submit" value="30" onclick="confirm()"></div></td>
+                                        </tr>
+                                        <tr>                                    
+                                            <td><div class="txt_size_60"><a>Ø60</a></div></td>
+                                            <td><div class="price60"><a name="price60">' . $items["price60"] . ' грн</a></div></td>
+                                            <td><div><input name="product_size" id="product_size_60" type="submit" value="60" onclick="confirm()"></div></td>
+                                            <td><div><input name="price30" value="' . $items["price30"] . '" type="hidden"></div></td>
+                                            <td><div><input name="price60" value="' . $items["price60"] . '" type="hidden"></div></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
                         </div>
                         ';	
             }
@@ -74,6 +81,7 @@ class smallCart {
                 require_once 'functions.php';
                 echo '<div class="btn_block">'
                         . '<div class="small_cart_order">'
+                            . '<i class="fa fa-check-square-o"></i>'
                             . '<a href="cart.php">оформить</a>'
                         . '</div>'
                         . '<div class="small_cart_total_cost">'
@@ -233,30 +241,46 @@ class Cart {
     function isEmpty() {
         if (isset($_SESSION['current_order'])) {
             if (count($_SESSION['current_order']) == 0) {
-                echo '<div class="empty_cart">'
-                        . '<a>Ваша корзина пуста</a>'
-                        . '<img src="pics/empty_cart.jpg">'
-                        . '<div class="pizza_btn">'
-                            . '<a href="pizza.php">выбрать пиццу!</a>'
-                        . '</div>'
-                    . '</div>';
+                echo '  <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="empty_cart">
+                                        <a>Ваша корзина пуста</a>
+                                        <img src="pics/empty_cart.jpg">
+                                        <div class="pizza_btn">
+                                            <a href="pizza.php">выбрать пиццу!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                            </div>
+                        </div>';
             }
         } else {
-            echo '<div class="empty_cart">'
-                    . '<a>Ваша корзина пуста</a>'
-                    . '<img src="pics/empty_cart.jpg">'
-                    . '<div class="pizza_btn">'
-                        . '<a href="pizza.php">выбрать пиццу!</a>'
-                    . '</div>'
-                . '</div>';
+            echo '  <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <div class="empty_cart">
+                                    <a>Ваша корзина пуста</a>
+                                    <img src="pics/empty_cart.jpg">
+                                    <div class="pizza_btn">
+                                        <a href="pizza.php">выбрать пиццу!</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                        </div>
+                    </div>';
         }
     }
     
     function orderMade() {
-        echo '<div class="order_made">'
+        echo '<div class="alert alert-success">'
                 . '<p>Спасибо!</p>'
-                . '<p>Ваш заказ принят. Наши менеджеры свяжутся с Вами в ближайшее время.</p>'
-            . '</div>';
+                . '<p>Ваш заказ принят. Мы свяжемся с Вами в ближайшее время для подтверждения заказа.</p>'
+            . '</div>'; //order_made 
         if (session_status() < 2) {
             session_start();
         }
@@ -447,8 +471,8 @@ function adminShowItems() {
         $items = $query->fetchArray(SQLITE3_ASSOC);
         if (isset($items['id'])) {
             echo '
-                <td><a href="admin.php?editid= ' . $items['id'] . '">edit</a></td>
-                <td><a href="admin.php?deleteid=' . $items['id'] . '">X</a></td>
+                <td><a href="admin.php?editid= ' . $items['id'] . '"><i class="fa fa-pencil-square-o"></i></a></td>
+                <td><a href="admin.php?deleteid=' . $items['id'] . '"><i class="fa fa-trash-o"></i></a></td>
                 <td><a href="admin.php?editid=' . $items['id'] . '">' . $items['id'] . '</a></td>
                 <td>' . $items['name'] . '</td><td>' . $items['price30'] . '</td>
                 <td>' . $items['price60'] . '</td>
@@ -575,13 +599,14 @@ function showAllOrders() {
         echo '<table border=1>';
         echo '<tr><td></td><td>дата</td><td>номер</td><td>состояние</td><td>клиент</td><td>номер телефона</td>'
             . '<td>email</td><td>адрес</td><td>сумма заказа</td><td>комментарий</td></tr>';
-        for ($i = 1; $i <= $n; $i++) {
+        for ($i = $n; $i >= 1; $i--) {
             $query = 'select * from orders where orderid =' . $i;
             $result = $db->query($query)->fetchArray(SQLITE3_ASSOC);
             if (isset($result['orderid'])) {
                 echo '<tr>';
                 if ($result['status'] == 'В обработке') {
-                    echo '<td><a href="admin.php?tab=orders&updid=' . $result['orderid'] . '">V</a></td>';
+                    echo '<td><a href="admin.php?tab=orders&updid=' . $result['orderid']
+                        . '"><i class="fa fa-check-square-o"></i></a></td>';
                 } else {
                     echo '<td></td>';
                 }
